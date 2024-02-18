@@ -22,18 +22,15 @@ class Solution {
         var i = 0
         var valueOfRoman = 0
         while (i in s.indices) {
-            var txt = "${s[i]}"
-
-            if (i + 1 in s.indices) {
+            romanCharValues[if (i + 1 in s.indices) {
                 if ("${s[i]}${s[i + 1]}" in getAsPair) {
-                    txt = "${s[i]}${s[i + 1]}"
-                    i++
-                }
-            }
-            romanCharValues[txt]?.let {
+                    "${s[i]}${s[i + 1]}".also { i++ }
+                } else "${s[i]}"
+            } else "${s[i]}"]?.let {
                 valueOfRoman += it
             }
             i++
+
         }
         return valueOfRoman
     }

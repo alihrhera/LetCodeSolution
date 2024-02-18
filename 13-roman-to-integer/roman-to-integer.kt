@@ -1,41 +1,31 @@
 class Solution {
     fun romanToInt(s: String): Int {
         if (s.length !in 1..15) throw Exception("String length must be >=1 and <=15")
+        var newTxt = s
         val romanCharValues = mapOf(
-            "I" to 1,
-            "II" to 2,
-            "V" to 5,
-            "X" to 10,
-            "L" to 50,
-            "C" to 100,
-            "D" to 500,
-            "M" to 1000,
-            "IV" to 4,
-            "IX" to 9,
-            "XL" to 40,
-            "XC" to 90,
-            "CD" to 400,
-            "CM" to 900,
+            'I' to 1,
+            'V' to 5,
+            'X' to 10,
+            'L' to 50,
+            'C' to 100,
+            'D' to 500,
+            'M' to 1000,
         )
-        if (!s.all { "$it" in romanCharValues.keys }) throw Exception("we can only accept 'I', 'V', 'X', 'L', 'C', 'D', 'M'")
-        val getAsPair = arrayOf("IV", "IX", "XL", "XC", "CD", "CM")
-        var i = 0
+        newTxt =
+            newTxt.replace("IV", "IIII")
+            .replace("IX", "VIIII")
+            .replace("XL", "XXXX")
+            .replace("XC", "LXXXX")
+            .replace("CD", "CCCC")
+            .replace("CM", "DCCCC")
+        if (!newTxt.all { it in romanCharValues.keys }) throw Exception("we can only accept 'I', 'V', 'X', 'L', 'C', 'D', 'M'")
         var valueOfRoman = 0
-        while (i in s.indices) {
-            var txt = "${s[i]}"
-
-            if (i + 1 in s.indices) {
-                if ("${s[i]}${s[i + 1]}" in getAsPair) {
-                    txt = "${s[i]}${s[i + 1]}"
-                    i++
-                }
+        newTxt.forEach {
+            romanCharValues[it]?.let { value ->
+                valueOfRoman += value
             }
-            romanCharValues[txt]?.let {
-                valueOfRoman += it
-            }
-            i++
         }
-       return valueOfRoman
-
+        println("Value of $s->>$newTxt is-> $valueOfRoman")
+        return valueOfRoman
     }
 }

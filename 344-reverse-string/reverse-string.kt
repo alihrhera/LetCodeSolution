@@ -2,13 +2,13 @@ class Solution {
     fun reverseString(s: CharArray): Unit {
         var left = 0
         var right = s.size - 1
-        val news = CharArray(s.size)
-        while (left < s.size) {
-            val temRight = s[right]
-            news[left] = temRight
-            right--
+        while (left <right) {
+            val temL = s[left]
+            s[left] =  s[right]
+            s[right] = temL
             left++
+            right--
+
         }
-        news.copyInto(s)
     }
 }

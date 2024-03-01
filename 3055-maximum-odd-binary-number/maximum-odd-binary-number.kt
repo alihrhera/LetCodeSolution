@@ -3,6 +3,10 @@ class Solution {
         if (!s.all { it == '1' || it == '0' }) throw Exception("Only 1 and 0 accepted")
         if (s.length == 1) return s
         val sChar = s.toCharArray()
+        if (s.count { it == '1' } == 1) {
+            swap(sChar, sChar.lastIndex, sChar.indexOfFirst { it == '1' })
+            return String(sChar)
+        }
         var lastItemIs1 = sChar.last() == '1'
         var index = if (lastItemIs1) sChar.lastIndex - 1 else sChar.lastIndex
         while (index >= 0) {

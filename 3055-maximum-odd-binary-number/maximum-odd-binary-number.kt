@@ -4,8 +4,7 @@ class Solution {
         if (s.length == 1) return s
         val sChar = s.toCharArray()
         if (s.count { it == '1' } == 1) {
-            swap(sChar, sChar.lastIndex, sChar.indexOfFirst { it == '1' })
-            return String(sChar)
+           return "0".repeat(s.lastIndex)+"1"
         }
         var lastItemIs1 = sChar.last() == '1'
         var index = if (lastItemIs1) sChar.lastIndex - 1 else sChar.lastIndex

@@ -10,9 +10,5 @@ class Solution {
         }
         return result
     }
-    private fun swap(arr: IntArray, x: Int, y: Int) {
-        val temp = arr[x]
-        arr[x] = arr[y]
-        arr[y] = temp
-    }
+    
 }

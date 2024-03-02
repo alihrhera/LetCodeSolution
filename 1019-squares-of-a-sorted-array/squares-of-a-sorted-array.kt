@@ -1,14 +1,14 @@
 class Solution {
     fun sortedSquares(nums: IntArray): IntArray {
-        for (i in 0..nums.lastIndex) {
-            nums[i] = nums[i] * nums[i]
-            var j = i
-            while (j - 1 > -1 && nums[j] < nums[j - 1]) {
-                swap(nums, j, j - 1)
-                j--
-            }
+        val result = IntArray(nums.size)
+        var s = 0
+        var e = nums.lastIndex
+        for (i in result.lastIndex downTo 0) {
+            result[i] = if (Math.abs(nums[s]) > Math.abs(nums[e])) {
+                nums[s++].let { it * it }
+            } else nums[e--].let { it * it }
         }
-        return nums
+        return result
     }
     private fun swap(arr: IntArray, x: Int, y: Int) {
         val temp = arr[x]

@@ -1,8 +1,7 @@
 class Solution {
       fun bagOfTokensScore(tokens: IntArray, power: Int): Int {
-        if (tokens.isEmpty())return 0
-        if (tokens.min() < power) {
-            if (tokens.size == 1) return 1
+        if (tokens.isEmpty()|| tokens.min() > power)return 0
+        if (tokens.size == 1) return 1
             tokens.sort()
             val n = tokens.size
             var score = 0
@@ -26,7 +25,5 @@ class Solution {
             }
 
             return maxScore
-        }
-        return 0
     }
 }

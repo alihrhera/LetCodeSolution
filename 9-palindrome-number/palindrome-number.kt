@@ -12,12 +12,6 @@ class Solution {
             s++
             e--
         }
-
-
         return true
-
-
-       
-        
     }
 }

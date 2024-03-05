@@ -1,32 +1,18 @@
 class Solution {
-    private val listOfChar = mutableListOf<Char>()
     fun minimumLength(s: String): Int {
         if (s.length == 1) return 1
         if (s.first() != s.last()) return s.length
-        listOfChar.clear()
-        listOfChar.addAll(s.toList())
         var start = 0
         var end = s.lastIndex
-
-        while (start < end) {
-            if (s[start] == s[end]) {
-                val startChar = s[start]
-                val endChar = s[end]
-                while (start in s.indices && startChar == s[start]) {
-                    val pos = listOfChar.indexOfFirst { it == startChar }
-                    if (pos >= 0) listOfChar.removeAt(pos)
+        while (start < end&&s[start] == s[end]) {
+                val char = s[start]
+                while (start <= end && char == s[start]) {
                     start++
                 }
-                while (end in s.indices && endChar == s[end]) {
-                    val pos = listOfChar.indexOfLast { it == endChar }
-                    if (pos >= 0) listOfChar.removeAt(pos)
+                while (start <= end && char == s[end]) {
                     end--
                 }
-
-            } else {
-                break
-            }
         }
-        return listOfChar.size
+        return end - start + 1
     }
 }

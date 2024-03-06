@@ -11,13 +11,13 @@
 class Solution {
       fun hasCycle(head: ListNode?): Boolean {
         if (head?.next == null) return false
-        val set = mutableSetOf<ListNode?>()
-        var mHead = head
-        while (mHead !in set) {
-            set.add(mHead)
+         var mHead = head
+        var myNext = head.next
+        while (mHead != null && myNext?.next != null) {
+            if (mHead == myNext) return true
             mHead = mHead?.next
-            if (mHead == null) return false
+            myNext = myNext?.next?.next
         }
-        return true
+        return false
     }
 }

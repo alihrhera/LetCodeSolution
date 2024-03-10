@@ -1,29 +1,16 @@
 class Solution {
-     fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
-        val intersectSet: HashSet<Int> = hashSetOf()
+      fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
+        val intersectSet: HashSet<Int> = HashSet()
         val result: MutableSet<Int> = hashSetOf()
-        var x = 0
-        var y = nums1.lastIndex
-        while (x <= y) {
-            intersectSet.add(nums1[x])
-            intersectSet.add(nums1[y])
-            x++
-            y--
+        for(i in 0..nums1.size - 1) {
+            intersectSet.add(nums1[i])
         }
-
-        x = 0
-        y = nums2.lastIndex
-        while (x <= y) {
-            if (intersectSet.contains(nums2[x])) {
-                result.add(nums2[x])
+        
+        for (i in 0..nums2.size - 1) {
+            if (intersectSet.contains(nums2[i])) {
+                result.add(nums2[i]) 
             }
-            if (intersectSet.contains(nums2[y])) {
-                result.add(nums2[y])
-            }
-            x++
-            y--
         }
-
         return result.toIntArray()
     }
 }
